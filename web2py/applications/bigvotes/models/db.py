@@ -79,3 +79,42 @@ use_janrain(auth,filename='private/janrain.key')
 ## >>> for row in rows: print row.id, row.myfield
 #########################################################################
 
+signature = db.Table(
+    db,
+    'signature',
+    Field( 'created_on', 'datetime', default = request.now ),
+    Field( 'created_by', db.auth_user, default = auth.user_id ),
+    Field( 'updated_on', 'datetime', default = auth.user_id ),
+    Field( 'updated_by', db.auth_user, default = auth.user_id ),
+)
+
+# Mebers for vote
+db.define_table(
+    'member',
+    Field( 'name', 'string', requires = [IS_NOT_EMPTY()] ),
+    Field( 'age', 'integer', requires = [IS_NOT_EMPTY()] ),
+    Field( 'description', 'text' ),
+    Field( 'status', 'string', requires = [IS_NOT_EMPTY()] ),
+    Field( 'avatar', 'upload', requires = [IS_NOT_EMPTY()] ),
+    signature
+)
+
+# Votes
+db.define_table(
+    'vote',
+    Field( 'members', 'list:reference member' ),
+    Field( 'start_at', 'datetime', requires = [IS_NOT_EMPTY()] ),
+    Field( 'end_at', 'datetime', requires = [IS_NOT_EMPTY()] ),
+    Field( 'active', 'boolean', requires = [IS_NOT_EMPTY()], default = False ),
+    signature
+)
+
+# Settings
+db.define_table(
+    'settings',
+    Field( 'no_poll_message', 'string', requires = [IS_NOT_EMPTY()], default = 'No polls at this time.' ),
+    Field( 'time_format', 'string', requires = [IS_NOT_EMPTY()], default = '%H:%M:%S' ),
+    Field( 'max_poll_member', 'integer', requires = [IS_NOT_EMPTY()], default = 2 ),
+    Field( 'revel_poll_result', 'boolean', requires = [IS_NOT_EMPTY()], default = True ),
+    signature
+)

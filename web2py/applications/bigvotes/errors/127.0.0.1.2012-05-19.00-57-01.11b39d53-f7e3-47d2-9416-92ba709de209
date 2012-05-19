@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.TypeError'> __init__() should return None, not 'bool'"
+p3
+sS'layer'
+p4
+S'/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/default.py'
+p5
+sS'code'
+p6
+S"# -*- coding: utf-8 -*-\nfrom bigvotes import Votes\n\ndef index():\n    # Define section title\n    request.section_title = T('Votes')\n    votes = Votes( db ).getActives()\n\n    return {\n        'votes': votes\n    }\n\ndef members():\n    return {}\n\ndef user():\n    return dict(form=auth())\n\n\ndef download():\n    return response.download(request,db)\n\n\ndef call():\n    return service()\n\n\n@auth.requires_signature()\ndef data():\n    return dict(form=crud())\n\n\nresponse._vars=response._caller(index)\n"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/restricted.py", line 205, in restricted\n    exec ccode in environment\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/default.py", line 33, in <module>\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/globals.py", line 173, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/default.py", line 7, in index\n    votes = Votes( db ).getActives()\nTypeError: __init__() should return None, not \'bool\'\n'
+p11
+s.

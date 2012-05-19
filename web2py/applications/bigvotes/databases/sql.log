@@ -53,3 +53,49 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
+timestamp: 2012-05-18T14:02:19.625984
+CREATE TABLE member(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    age INTEGER,
+    description TEXT,
+    status CHAR(512),
+    avatar CHAR(512),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    updated_on TIMESTAMP,
+    updated_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-05-18T14:02:19.684661
+CREATE TABLE vote(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    members CHAR(512),
+    start_at TIMESTAMP,
+    end_at TIMESTAMP,
+    active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    updated_on TIMESTAMP,
+    updated_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-05-19T00:23:56.328811
+ALTER TABLE vote ADD member INTEGER REFERENCES member(id) ON DELETE CASCADE;
+timestamp: 2012-05-19T01:14:19.046586
+CREATE TABLE settings(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    no_poll_message CHAR(512),
+    time_format CHAR(512),
+    max_poll_member INTEGER,
+    revel_poll_result CHAR(1)
+);
+success!
+timestamp: 2012-05-19T01:15:33.728738
+ALTER TABLE settings ADD updated_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE;
+timestamp: 2012-05-19T01:15:33.777850
+ALTER TABLE settings ADD created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE;
+timestamp: 2012-05-19T01:15:33.836970
+ALTER TABLE settings ADD created_on TIMESTAMP;
+timestamp: 2012-05-19T01:15:33.952292
+ALTER TABLE settings ADD updated_on TIMESTAMP;
