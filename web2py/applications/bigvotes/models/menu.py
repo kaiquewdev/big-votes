@@ -20,6 +20,6 @@ response.google_analytics_id = None
 
 response.menu = [
     (T('Votes'), False, URL('default','index'), []),
-    (T('Members'), False, URL('default','members'), []),
-    (T('Members Eliminated'), False, URL('default','members', args=['eliminated']), [])
+    (T('Members'), False, URL('member','index'), []),
+    (T('Members Eliminated'), False, URL('member','eliminated'), [])
 ]

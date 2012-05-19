@@ -1,17 +1,26 @@
 {{extend 'layout.html'}}
 
 <section class="main-content">
-  <article>
-    <header>
-      <hr>    
-    </header>
-    
-    <div>
+  {{ if votes: }}
+    <article>
+      <header>
+        <hr>
+        <h1>  </h1>
+      </header>
       
-    </div>
+      <div>
 
-    <footer>
-      <hr>
-    </footer>
-  </article>
+      </div>
+
+      <footer>
+        <hr>
+      </footer>
+    </article>
+  {{ elif not votes: }}
+    <article>
+      <header>
+        <h1></h1>
+      </header>
+    </article>
+  {{pass}}
 </section>

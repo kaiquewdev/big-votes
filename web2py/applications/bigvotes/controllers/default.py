@@ -4,16 +4,12 @@ from bigvotes import Votes
 def index():
     # Define section title
     request.section_title = T('Votes')
+    # Get votation members
     votes = Votes( db ).getActives()
-
-    print votes
 
     return {
         'votes': votes
     }
-
-def members():
-    return {}
 
 def user():
     return dict(form=auth())
