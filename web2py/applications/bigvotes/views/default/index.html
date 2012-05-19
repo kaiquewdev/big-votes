@@ -1,11 +1,15 @@
 {{extend 'layout.html'}}
 
 <section class="main-content">
-  {{ if votes: }}
+  {{ if votes and len( votes.members ) == 2: }}
     <article>
       <header>
         <hr>
-        <h1>  </h1>
+        <h2 class="vote-title"> {{=' X '.join( specs['title'] )}} </h2>
+
+        <div class="holder-members-imgs">
+          {{=XML(''.join( specs['avatar'] ))}}
+        </div>
       </header>
       
       <div>
@@ -13,13 +17,16 @@
       </div>
 
       <footer>
+        <div class="holder-controls">
+          <a class="button">{{=T('Vote')}}</a>
+        </div>
         <hr>
       </footer>
     </article>
   {{ elif not votes: }}
     <article>
       <header>
-        <h1></h1>
+        <h1> {{='No polls at moment.'}} </h1>
       </header>
     </article>
   {{pass}}

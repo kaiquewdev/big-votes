@@ -5,10 +5,21 @@ def index():
     # Define section title
     request.section_title = T('Votes')
     # Get votation members
-    votes = Votes( db ).getActives()
+    votes = Votes( db ).getActives().first()
+    # Specifications of member
+    specs = {
+        'title': [member.name for member in votes.members],
+        'avatar': [
+            '<img src="{0}" width="40%" height="40%" />'.format( 
+                    URL('default', 'download', args=[member.avatar]
+                ) 
+            ) for member in votes.members
+        ],
+    }
 
     return {
-        'votes': votes
+        'votes': votes,
+        'specs': specs
     }
 
 def user():
