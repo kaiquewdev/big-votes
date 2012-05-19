@@ -41,14 +41,19 @@ class Members( Votes ):
 	def __init__( self, db ):
 		Votes.__init__(self, db)
 
-	def getAll( self ):
+	def getBy( self, status = 'active' ):
+		'''
+		Get members by status
+		'''
 		output = []
 
 		try:
-			if self.db:
+			if self.db and status:
 				db = self.db
 
-				db.get('member')
+				output = db( db.member.status == status ).select()
+
+			return output
 		except Exception:
 			return output
 

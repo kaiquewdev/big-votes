@@ -1,7 +1,16 @@
 # -*- coding: utf-8 -*-
+from bigvotes import Members
 
 def index():
-	return {}
+	members = Members(db).getBy()
+
+	return {
+		'members': members
+	}
 
 def eliminated():
-	return {}
+	members = Members(db).getBy(status = 'deactive')
+
+	return {
+		'members': members
+	}

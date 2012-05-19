@@ -1,25 +1,29 @@
 {{extend 'layout.html'}}
 
 <section class="main-content">
-  {{ if members: }}
     <article>
     	<header>
     		<hr>
-    		<h2>{{=T('Members')}}</h2>
-    		<br>
+    		{{ if members: }}
+    			<h2>{{=T('Members Eliminated')}}</h2>
+    			<br>
+    		{{pass}}
     	</header>
 
     	<div>
-    		<ul class="main-member-list">
+			{{ if members: }}
+			<ul class="main-member-list">
 	    		{{for member in members:}}
 	    			<li><a href="#">{{=T( 'Name: %(name)s, Age: %(age)s' % (member) )}}</a></li>
 	    		{{pass}}
-    		</ul>
+			</ul>
+			{{ elif len(members) == 0: }}
+				<p>{{=T('No member disposed')}}</p>
+			{{pass}}
     	</div>
 
     	<footer>
     		<hr>
     	</footer>
     </article>
-  {{pass}}
 </section>
