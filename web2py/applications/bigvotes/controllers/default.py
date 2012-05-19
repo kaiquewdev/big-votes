@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from bigvotes import Votes
+import datetime
 
 def index():
     # Define section title
     request.section_title = T('Votes')
+    # Now time
+    now = datetime.datetime.now()
     # Get votation members
     votes = Votes( db ).getActives().first()
     # Specifications of member
@@ -15,9 +18,12 @@ def index():
                 ) 
             ) for member in votes.members
         ],
+        'start': votes.start_at,
+        'end': votes.end_at,
     }
 
     return {
+        'now': now,
         'votes': votes,
         'specs': specs
     }
