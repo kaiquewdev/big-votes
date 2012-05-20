@@ -5,7 +5,7 @@
 # are used when the respective element is missing from the
 # (possibly rewritten) incoming URL
 #
-default_application = 'init'    # ordinarily set in base routes.py
+default_application = 'bigvotes'    # ordinarily set in base routes.py
 default_controller = 'default'  # ordinarily set in app-specific routes.py
 default_function = 'index'      # ordinarily set in app-specific routes.py
 
@@ -17,7 +17,7 @@ default_function = 'index'      # ordinarily set in app-specific routes.py
 # Example: support welcome, admin, app and myapp, with myapp the default:
 
 
-routes_app = ((r'/(?P<app>welcome|admin|app)\b.*', r'\g<app>'),
+routes_app = ((r'/(?P<app>bigvotes|admin|app)\b.*', r'\g<app>'),
               (r'(.*)', r'bigvotes'),
               (r'/?(.*)', r'bigvotes'))
 
@@ -82,7 +82,7 @@ logging = 'debug'
 
 # specify a list of apps that bypass args-checking and use request.raw_args
 #
-#routes_apps_raw=['myapp']
+routes_apps_raw=['myapp']
 #routes_apps_raw=['myapp', 'myotherapp']
 
 def __routes_doctest():
