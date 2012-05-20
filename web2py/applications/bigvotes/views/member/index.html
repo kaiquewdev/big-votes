@@ -12,7 +12,7 @@
     	<div>
     		<ul class="main-member-list">
 	    		{{for member in members:}}
-	    			<li><a href="#">{{=T( 'Name: %(name)s, Age: %(age)s' % (member) )}}</a></li>
+	    			<li><a href="{{=URL('member', 'profile', args=[member.id])}}">{{=T( 'Name: %(name)s, Age: %(age)s' % (member) )}}</a></li>
 	    		{{pass}}
     		</ul>
     	</div>

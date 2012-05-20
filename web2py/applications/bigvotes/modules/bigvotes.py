@@ -41,6 +41,25 @@ class Members( Votes ):
 	def __init__( self, db ):
 		Votes.__init__(self, db)
 
+	def getActiveMember( self, id = 0 ):
+		'''
+		Get members by id
+		'''
+		output = []
+
+		try:
+			if self.db and id:
+				db = self.db
+
+				output = db( 
+					( db.member.id == int( id ) ) & 
+					( db.member.status == 'active' ) 
+				).select().first()
+
+			return output
+		except Exception:
+			return output
+
 	def getBy( self, status = 'active' ):
 		'''
 		Get members by status

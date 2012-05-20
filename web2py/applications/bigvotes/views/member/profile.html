@@ -1,0 +1,28 @@
+{{extend 'layout.html'}}
+
+<section class="main-content">
+  {{ if member: }}
+    <article>
+    	<header>
+    		<hr>
+    		<h2>{{='%(name)s' % (member)}}</h2>
+    		<br>
+    	</header>
+
+    	<div class="member-profile">
+            <div class="holder-profile-image">
+                <img src="{{=URL('default', 'download', args=[member.avatar])}}">
+            </div>
+
+    		<p class="member-profile-description">
+                {{='%(name)s, %(description)s' % (member)}}
+            </p>
+    	</div>
+
+    	<footer>
+    		<hr>
+            {{=A( T('Back'), _href=URL( 'member', 'index' ) )}}
+    	</footer>
+    </article>
+  {{pass}}
+</section>

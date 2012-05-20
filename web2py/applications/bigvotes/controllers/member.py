@@ -8,6 +8,17 @@ def index():
 		'members': members
 	}
 
+def profile():
+	args = request.args
+	member = Members(db)
+
+	if len( args ) > 0:
+		member = member.getActiveMember( args[0] )
+
+	return {
+		'member': member
+	}
+
 def eliminated():
 	members = Members(db).getBy(status = 'deactive')
 

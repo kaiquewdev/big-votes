@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.IndexError'> list index out of range"
+p3
+sS'layer'
+p4
+S'/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/member.py'
+p5
+sS'code'
+p6
+S"# -*- coding: utf-8 -*-\nfrom bigvotes import Members\n\ndef index():\n\tmembers = Members(db).getBy()\n\n\treturn {\n\t\t'members': members\n\t}\n\ndef profile():\n\targs = request.args\n\n\tif len( args ) > 0:\n\t\tmember = Members(db).getBy( id = int( args[1] ) )\n\n\treturn {\n\t\t'member': member\n\t}\n\ndef eliminated():\n\tmembers = Members(db).getBy(status = 'deactive')\n\n\treturn {\n\t\t'members': members\n\t}\nresponse._vars=response._caller(profile)\n"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/restricted.py", line 205, in restricted\n    exec ccode in environment\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/member.py", line 27, in <module>\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/globals.py", line 173, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/member.py", line 15, in profile\n    member = Members(db).getBy( id = int( args[1] ) )\nIndexError: list index out of range\n'
+p11
+s.
