@@ -14,6 +14,8 @@ def profile():
 
 	if len( args ) > 0:
 		member = member.getActiveMember( args[0] )
+	else:
+		redirect( URL( 'index' ) )
 
 	return {
 		'member': member
