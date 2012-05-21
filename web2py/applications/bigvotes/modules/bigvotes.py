@@ -60,8 +60,37 @@ class Votes( object ):
 		except Exception:
 			return output
 
-	def diffMember( self, ids = {} ):
-		pass
+	def getScore( self, voting_id = 0 ):
+		'''
+		Get score of voting.
+		'''
+		output = {}
+		selection = {}
+
+		try:
+			if self.db:
+				db = self.db
+
+				if voting_id:
+					# Ge votes by id
+					selection = db( 
+						( db.voting.vote_id == voting_id ) 
+					).select()
+
+					if selection:
+						for vote in selection:
+							verify_key = output.has_key( vote['member_id'] )
+							if verify_key:
+								output[ vote['member_id'] ]['score'] += 1
+							elif not verify_key:
+								output[ vote['member_id'] ] = {
+									'name': vote['member_id']['name'],
+									'score': 1
+								}
+				return output
+			return output
+		except Exception:
+			return output
 
 class Members( Votes ):
 	def __init__( self, db ):

@@ -48,13 +48,13 @@ p19
 ssS'member'
 p20
 (dp21
-S'type'
+S'sortable'
 p22
-S'reference member'
-p23
-sS'sortable'
-p24
 I2
+sS'type'
+p23
+S'reference member'
+p24
 sS'sql'
 p25
 S'INTEGER REFERENCES member(id) ON DELETE CASCADE'

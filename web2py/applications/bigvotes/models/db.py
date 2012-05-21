@@ -116,7 +116,7 @@ db.define_table(
     Field( 'member_id', db.member, requires = [IS_NOT_EMPTY()] ),
     Field( 'user_id', db.auth_user, default = auth.user_id ),
     Field( 'vote_register', 'datetime', requires = [IS_NOT_EMPTY()], default = request.now ),
-    Field( 'vote_ip', 'string', requires = [IS_NOT_EMPTY()], default = request.client )
+    Field( 'vote_ip', 'string', requires = [IS_NOT_EMPTY(), IS_IPV4()], default = request.client )
 )
 
 # Settings
