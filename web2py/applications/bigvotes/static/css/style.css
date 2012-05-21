@@ -1,4 +1,29 @@
 /* Main style */
 .main-content {
+
+}
+
+.main-content header, .main-content header p {
+	text-align: center;
+}
+
+.main-content header img {
 	border: 1px solid red;
+	margin: 0 10px 0;
+}
+
+.main-content footer .holder-controls {
+	margin: 0 auto;
+	padding: 10px 180px 0 180px;
+}
+
+.main-content footer .holder-controls a {
+	margin: 0;
+}
+
+.main-content footer .holder-controls a:first-child {
+}
+
+.main-content footer .holder-controls a:last-child {
+	float: right;
 }
