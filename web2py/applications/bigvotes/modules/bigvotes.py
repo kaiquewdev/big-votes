@@ -60,6 +60,9 @@ class Votes( object ):
 		except Exception:
 			return output
 
+	def diffMember( self, ids = {} ):
+		pass
+
 class Members( Votes ):
 	def __init__( self, db ):
 		Votes.__init__(self, db)
