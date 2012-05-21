@@ -105,8 +105,15 @@ db.define_table(
     Field( 'members', 'list:reference member' ),
     Field( 'start_at', 'datetime', requires = [IS_NOT_EMPTY()] ),
     Field( 'end_at', 'datetime', requires = [IS_NOT_EMPTY()] ),
-    Field( 'active', 'boolean', requires = [IS_NOT_EMPTY()], default = False ),
+    Field( 'active', 'boolean', default = False ),
     signature
+)
+
+# Voting
+db.define_table(
+    'voting',
+    Field( 'vote_id', db.vote ),
+    Field( 'member_id', db.member ),
 )
 
 # Settings

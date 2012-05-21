@@ -1,12 +1,12 @@
 {{extend 'layout.html'}}
 
 <section class="main-content">
-  {{ if votes and len( votes.members ) == 2: }}
+  {{ if votes and specs and len( votes.members ) == 2: }}
     <article>
       <header>
         <hr>
         {{if now > specs['start'] and now > specs['end']:}}
-          {{=P(T('Voting closed') )}}
+          {{=P(T('Voting closed'), _class="voting-message" )}}
         {{pass}}
         
         <h2 class="vote-title"> {{=' X '.join( specs['title'] )}} </h2>
@@ -15,23 +15,32 @@
           {{=XML(''.join( specs['avatar'] ))}}
         </div>
       </header>
-      
-      <div>
-
-      </div>
 
       <footer>
         <div class="holder-controls">
-          <a class="button" href="#">{{=T('Vote')}}</a>
+          {{#if now > specs['start'] and now > specs['end']:}}
+           <!-- <a class="button">{{=T('View results')}}</a> -->
+          {{#else:}}
+            {{ for index in range( len( specs['id'] ) ): }}
+              <a class="button" href="{{=URL('vote', 'index', args=[ specs['id'][index] ])}}">
+                {{=T('Eliminate %s' % ( specs['title'][index] ) )}}
+              </a>
+            {{pass}}
+          {{#pass}}
         </div>
         <hr>
       </footer>
     </article>
-  {{ elif not votes: }}
+  {{else:}}
     <article>
-      <header>
-        <h1> {{='No polls at moment.'}} </h1>
-      </header>
+        <header>
+            <hr>
+            <p>{{=T('No polls.')}}</p>
+        </header>
+        <footer>
+            <hr>
+            {{=A( T('See members'), _href=URL( 'member', 'index' ) )}}
+        </footer>
     </article>
   {{pass}}
 </section>

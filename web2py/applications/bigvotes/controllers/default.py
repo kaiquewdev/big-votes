@@ -3,24 +3,27 @@ from bigvotes import Votes
 import datetime
 
 def index():
-    # Define section title
-    request.section_title = T('Votes')
     # Now time
     now = datetime.datetime.now()
     # Get votation members
-    votes = Votes( db ).getActives().first()
-    # Specifications of member
-    specs = {
-        'title': [member.name for member in votes.members],
-        'avatar': [
-            '<img src="{0}" width="40%" height="40%" />'.format( 
-                    URL('default', 'download', args=[member.avatar]
-                ) 
-            ) for member in votes.members
-        ],
-        'start': votes.start_at,
-        'end': votes.end_at,
-    }
+    votes = Votes( db ).getActives()
+    specs = {}
+
+    if votes:
+        votes = votes.first()
+        # Specifications of member
+        specs = {
+            'id': [member.id for member in votes.members],
+            'title': [member.name for member in votes.members],
+            'avatar': [
+                '<img src="{0}" width="40%" height="40%" />'.format( 
+                        URL('default', 'download', args=[member.avatar]
+                    ) 
+                ) for member in votes.members
+            ],
+            'start': votes.start_at,
+            'end': votes.end_at,
+        }
 
     return {
         'now': now,
