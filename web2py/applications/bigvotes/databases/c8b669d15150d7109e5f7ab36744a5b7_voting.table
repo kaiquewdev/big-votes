@@ -1,0 +1,38 @@
+(dp1
+S'vote_id'
+p2
+(dp3
+S'type'
+p4
+S'reference vote'
+p5
+sS'sortable'
+p6
+I2
+sS'sql'
+p7
+S'INTEGER REFERENCES vote(id) ON DELETE CASCADE'
+p8
+ssS'id'
+p9
+(dp10
+g4
+S'id'
+p11
+sg6
+I1
+sg7
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p12
+ssS'member_id'
+p13
+(dp14
+g4
+S'reference member'
+p15
+sg6
+I3
+sg7
+S'INTEGER REFERENCES member(id) ON DELETE CASCADE'
+p16
+ss.

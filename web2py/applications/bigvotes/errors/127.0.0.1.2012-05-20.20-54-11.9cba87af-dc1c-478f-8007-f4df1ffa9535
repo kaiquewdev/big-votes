@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.AttributeError'> 'list' object has no attribute 'first'"
+p3
+sS'layer'
+p4
+S'/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/default.py'
+p5
+sS'code'
+p6
+S'# -*- coding: utf-8 -*-\nfrom bigvotes import Votes\nimport datetime\n\ndef index():\n    # Define section title\n    request.section_title = T(\'Votes\')\n    # Now time\n    now = datetime.datetime.now()\n    # Get votation members\n    votes = Votes( db ).getActives().first()\n\n    if votes:\n        # Specifications of member\n        specs = {\n            \'title\': [member.name for member in votes.members],\n            \'avatar\': [\n                \'<img src="{0}" width="40%" height="40%" />\'.format( \n                        URL(\'default\', \'download\', args=[member.avatar]\n                    ) \n                ) for member in votes.members\n            ],\n            \'start\': votes.start_at,\n            \'end\': votes.end_at,\n        }\n\n    return {\n        \'now\': now,\n        \'votes\': votes,\n        \'specs\': specs\n    }\n\ndef user():\n    return dict(form=auth())\n\n\ndef download():\n    return response.download(request,db)\n\n\ndef call():\n    return service()\n\n\n@auth.requires_signature()\ndef data():\n    return dict(form=crud())\n\n\nresponse._vars=response._caller(index)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/restricted.py", line 205, in restricted\n    exec ccode in environment\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/default.py", line 50, in <module>\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/globals.py", line 173, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/default.py", line 11, in index\n    votes = Votes( db ).getActives().first()\nAttributeError: \'list\' object has no attribute \'first\'\n'
+p11
+s.
