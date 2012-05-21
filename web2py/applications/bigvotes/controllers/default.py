@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import bigvotes.hello
 from bigvotes import Votes
 import datetime
 

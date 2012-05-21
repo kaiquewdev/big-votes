@@ -131,10 +131,9 @@ class Members( Votes ):
 		except Exception:
 			return output
 
-
-#class Settings( Votes ):
-#	def __init( self ):
-#		Votes.__init__()
+def hello():
+			print 'Testing decorator'
+			return
 
 if __name__ == '__main__':
 	import doctest; doctest.testmod()
