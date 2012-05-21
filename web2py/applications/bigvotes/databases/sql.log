@@ -106,3 +106,9 @@ CREATE TABLE voting(
     member_id INTEGER REFERENCES vote(id) ON DELETE CASCADE
 );
 success!
+timestamp: 2012-05-20T23:09:17.025398
+ALTER TABLE voting ADD vote_register TIMESTAMP;
+timestamp: 2012-05-20T23:09:17.106315
+ALTER TABLE voting ADD user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE;
+timestamp: 2012-05-20T23:11:58.517255
+ALTER TABLE voting ADD vote_ip CHAR(512);

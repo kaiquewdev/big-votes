@@ -3,27 +3,26 @@
 
 }
 
-.main-content header, .main-content header p {
+.main-content .voting header, .main-content .voting header p {
 	text-align: center;
 }
 
-.main-content header img {
-	border: 1px solid red;
-	margin: 0 10px 0;
+.main-content .voting header img {
+	margin: 15px 10px;
 }
 
-.main-content footer .holder-controls {
+.main-content .voting footer .holder-controls {
 	margin: 0 auto;
 	padding: 10px 180px 0 180px;
 }
 
-.main-content footer .holder-controls a {
+.main-content .voting footer .holder-controls a {
 	margin: 0;
 }
 
-.main-content footer .holder-controls a:first-child {
+.main-content .voting footer .holder-controls a:first-child {
 }
 
-.main-content footer .holder-controls a:last-child {
+.main-content .voting footer .holder-controls a:last-child {
 	float: right;
 }

@@ -84,7 +84,7 @@ signature = db.Table(
     'signature',
     Field( 'created_on', 'datetime', default = request.now ),
     Field( 'created_by', db.auth_user, default = auth.user_id ),
-    Field( 'updated_on', 'datetime', default = auth.user_id ),
+    Field( 'updated_on', 'datetime', default = request.now ),
     Field( 'updated_by', db.auth_user, default = auth.user_id ),
 )
 
@@ -112,8 +112,11 @@ db.define_table(
 # Voting
 db.define_table(
     'voting',
-    Field( 'vote_id', db.vote ),
-    Field( 'member_id', db.member ),
+    Field( 'vote_id', db.vote, requires = [IS_NOT_EMPTY()] ),
+    Field( 'member_id', db.member, requires = [IS_NOT_EMPTY()] ),
+    Field( 'user_id', db.auth_user, default = auth.user_id ),
+    Field( 'vote_register', 'datetime', requires = [IS_NOT_EMPTY()], default = request.now ),
+    Field( 'vote_ip', 'string', requires = [IS_NOT_EMPTY()], default = request.client )
 )
 
 # Settings

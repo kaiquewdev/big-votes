@@ -1,38 +1,71 @@
 (dp1
-S'vote_id'
+S'user_id'
 p2
 (dp3
 S'type'
 p4
-S'reference vote'
+S'reference auth_user'
 p5
 sS'sortable'
 p6
-I2
+I4
 sS'sql'
 p7
-S'INTEGER REFERENCES vote(id) ON DELETE CASCADE'
+S'INTEGER REFERENCES auth_user(id) ON DELETE CASCADE'
 p8
-ssS'id'
+ssS'vote_register'
 p9
 (dp10
 g4
-S'id'
+S'datetime'
 p11
 sg6
-I1
+I5
 sg7
-S'INTEGER PRIMARY KEY AUTOINCREMENT'
+S'TIMESTAMP'
 p12
-ssS'member_id'
+ssS'vote_ip'
 p13
 (dp14
 g4
-S'reference member'
+S'string'
 p15
+sg6
+I6
+sg7
+S'CHAR(512)'
+p16
+ssS'member_id'
+p17
+(dp18
+g4
+S'reference member'
+p19
 sg6
 I3
 sg7
 S'INTEGER REFERENCES member(id) ON DELETE CASCADE'
-p16
+p20
+ssS'vote_id'
+p21
+(dp22
+g4
+S'reference vote'
+p23
+sg6
+I2
+sg7
+S'INTEGER REFERENCES vote(id) ON DELETE CASCADE'
+p24
+ssS'id'
+p25
+(dp26
+g4
+S'id'
+p27
+sg6
+I1
+sg7
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p28
 ss.

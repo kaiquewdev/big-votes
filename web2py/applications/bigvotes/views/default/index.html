@@ -2,7 +2,7 @@
 
 <section class="main-content">
   {{ if votes and specs and len( votes.members ) == 2: }}
-    <article>
+    <article class="voting">
       <header>
         <hr>
         {{if now > specs['start'] and now > specs['end']:}}

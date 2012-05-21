@@ -37,6 +37,29 @@ class Votes( object ):
 		except Exception:
 			return output
 
+	def newVote( self, ids = {} ):
+		'''
+		Insert new vote to the system.
+		'''
+		output = False
+		voting = ''
+
+		try:
+			if self.db:
+				db = self.db
+
+				if ids:
+					voting = db.voting.insert(
+						vote_id = ids['vote'],
+						member_id = ids['member'],
+					)
+
+					if voting:
+						output = voting
+			return output
+		except Exception:
+			return output
+
 class Members( Votes ):
 	def __init__( self, db ):
 		Votes.__init__(self, db)

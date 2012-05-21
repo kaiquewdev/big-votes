@@ -2,3 +2,6 @@
 
 def index():
 	pass
+
+def result():
+	pass
