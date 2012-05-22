@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.TypeError'> newVote() takes at most 2 arguments (3 given)"
+p3
+sS'layer'
+p4
+S'/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/vote.py'
+p5
+sS'code'
+p6
+S"# -*- coding: utf-8 -*-\nfrom bigvotes import Votes\nimport datetime\n\ndef index():\n\targs = request.args\n\tclient_ip = request.client\n\tnow = datetime.datetime.now\n\telapsed_time = datetime.timedelta( seconds = 60*5 )\n\toutput = False\n\n\tif args and len( args ) > 0 and client_ip:\n\t\tconsult = db( \n\t\t\t( db.voting.vote_id == args[0] ) &\n\t\t\t( db.voting.vote_ip == client_ip ) \n\t\t).select().first()\n\n\t\tif ( consult.vote_register + elapsed_time ) <= now():\n\t\t\toutput = Votes(db).newVote( args[0], args[1] )\n\t\telse:\n\t\t\tredirect( URL('default', 'index') )\n\telse:\n\t\tredirect( URL('default', 'index') )\n\n\treturn output\n\ndef result():\n\tpass\nresponse._vars=response._caller(index)\n"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/restricted.py", line 205, in restricted\n    exec ccode in environment\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/vote.py", line 29, in <module>\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/globals.py", line 173, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/vote.py", line 19, in index\n    output = Votes(db).newVote( args[0], args[1] )\nTypeError: newVote() takes at most 2 arguments (3 given)\n'
+p11
+s.

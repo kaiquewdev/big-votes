@@ -22,7 +22,7 @@
            <!-- <a class="button">{{=T('View results')}}</a> -->
           {{#else:}}
             {{ for index in range( len( specs['id'] ) ): }}
-              <a class="button" href="{{=URL('vote', 'index', args=[ specs['id'][index] ])}}">
+              <a class="button" href="{{=URL('vote', 'index', args=[ votes['id'], specs['id'][index] ])}}">
                 {{=T('Eliminate %s' % ( specs['title'][index] ) )}}
               </a>
             {{pass}}

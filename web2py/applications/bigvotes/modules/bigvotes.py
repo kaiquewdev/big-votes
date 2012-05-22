@@ -1,3 +1,10 @@
+class Schedule( object ):
+	def __init__( self ):
+		pass
+
+	def start( self ):
+		pass
+
 class Votes( object ):
 	def __init__( self, db = {} ):
 		output = {}
@@ -56,6 +63,25 @@ class Votes( object ):
 
 					if voting:
 						output = voting
+			return output
+		except Exception:
+			return output
+
+	def consult( self, info = {} ):
+		'''
+		Consult if has ip in voting.
+		'''
+		output = {}
+
+		try:
+			if self.db:
+				db = self.db
+
+				if info:
+					output = db(
+						( db.voting.vote_id == info['vote_id'] ) &
+						( db.voting.vote_ip == info['vote_ip'] )
+					).select().first()
 			return output
 		except Exception:
 			return output
