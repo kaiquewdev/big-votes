@@ -1,10 +1,3 @@
-class Schedule( object ):
-	def __init__( self ):
-		pass
-
-	def start( self ):
-		pass
-
 class Votes( object ):
 	def __init__( self, db = {} ):
 		output = {}
