@@ -16,7 +16,7 @@ class Votes( object ):
 		except Exception:
 			return output
 
-	def getActives( self ):
+	def getActives( self, vote_id = 0 ):
 		'''
 		Get actives for votes.
 		>>> Votes().getActives()
@@ -31,11 +31,12 @@ class Votes( object ):
 				db = self.db
 				now = datetime.datetime.now()
 				
-				votes = db( 
-					db.vote.active == True
-				).select( 
-					orderby =~ db.vote.start_at 
-				)
+				query = ( db.vote.active == True )
+
+				if vote_id:
+					query &= ( db.vote.id == vote_id )
+
+				votes = db( query ).select()
 
 				if votes:
 					output = votes

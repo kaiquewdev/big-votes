@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.AttributeError'> 'list' object has no attribute 'first'"
+p3
+sS'layer'
+p4
+S'/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/vote.py'
+p5
+sS'code'
+p6
+S"# -*- coding: utf-8 -*-\nfrom bigvotes import Votes\nimport datetime\n\ndef index():\n\targs = request.args\n\tclient_ip = request.client\n\tnow = datetime.datetime.now\n\telapsed_time = datetime.timedelta( seconds = 60*5 )\n\toutput = False\n\n\tif args and len( args ) > 0 and client_ip:\n\t\tvoting = Votes(db).getActives(args[0]).first()\n\t\t\n\t\tconsult = Votes(db).consult({\n\t\t\t'vote_id': args[0],\n\t\t\t'vote_ip': client_ip,\n\t\t})\n\n\t\tif now() > ( consult.vote_register + elapsed_time ):\n\n\t\t\tif not now() > specs['start'] and not now > specs['end']:\n\t\t\t\toutput = Votes(db).newVote( { 'vote': args[0], 'member': args[1] } )\n\n\t\t\tif output:\n\t\t\t\tmembers = {}\n\t\t\t\t# Profile of members in the score\n\t\t\t\tmembers['profile'] = Votes(db).getScore( args[0] )\n\t\t\t\t# Score of members\n\t\t\t\tmembers['scores'] = [ members['profile'][member]['score'] for member in members['profile'] ]\n\t\t\t\t# Max score to eliminate\n\t\t\t\tmembers['max_score'] = max( members['scores'] )\n\t\t\t\t# Min score\n\t\t\t\tmembers['min_score'] = min( members['scores'] )\n\t\t\t\t# Members is tied\n\t\t\t\tmembers['tied'] = ( members['max_score'] == members['min_score'] )\n\t\t\t\t# Id of members in the profile score\n\t\t\t\tmembers['ids'] = [ int( member ) for member in members['profile'] ]\n\t\t\t\t# Names of members\n\t\t\t\tmembers['names'] = [ member['name'] for member in members['profile'] ]\n\t\t\t\t# Id of eliminated member\n\t\t\t\tmembers['eliminated'] = {\n\t\t\t\t\t'id': members['ids'][ members['scores'].index( members['max_score'] ) ],\n\t\t\t\t\t'name': members['names'][ members['scores'].index( members['max_score'] ) ],\n\t\t\t\t} \n\n\t\t\t\tif members:\n\t\t\t\t\tresponse.flash = T('Voted in %(name)s' % ( members['profile'].get( int( args[1] ) ) ) )\n\t\t\t\tif now() > specs['start'] and now > specs['end']:\n\t\t\t\t\tresponse.flash = T('Voting complete, %(name)s was eliminated!' % ( members['eliminated'] ) )\n\n\t\telse:\n\t\t\tredirect( URL('default', 'index') )\n\telse:\n\t\tredirect( URL('default', 'index') )\n\n\treturn {\n\t\t'vote': args[1],\n\t\t'members': members\n\t}\n\ndef result():\n\tpass\nresponse._vars=response._caller(index)\n"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/restricted.py", line 205, in restricted\n    exec ccode in environment\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/vote.py", line 64, in <module>\n  File "/home/kaique/Projects/web/big-votes/web2py/gluon/globals.py", line 173, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/kaique/Projects/web/big-votes/web2py/applications/bigvotes/controllers/vote.py", line 13, in index\n    voting = Votes(db).getActives(args[0]).first()\nAttributeError: \'list\' object has no attribute \'first\'\n'
+p11
+s.

@@ -18,15 +18,11 @@
 
       <footer>
         <div class="holder-controls">
-          {{#if now > specs['start'] and now > specs['end']:}}
-           <!-- <a class="button">{{=T('View results')}}</a> -->
-          {{#else:}}
-            {{ for index in range( len( specs['id'] ) ): }}
-              <a class="button" href="{{=URL('vote', 'index', args=[ votes['id'], specs['id'][index] ])}}">
-                {{=T('Eliminate %s' % ( specs['title'][index] ) )}}
-              </a>
-            {{pass}}
-          {{#pass}}
+          {{ for index in range( len( specs['id'] ) ): }}
+            <a class="button" href="{{=URL('vote', 'index', args=[ votes['id'], specs['id'][index] ])}}">
+              {{=T('Eliminate %s' % ( specs['title'][index] ) )}}
+            </a>
+          {{pass}}
         </div>
         <hr>
       </footer>
