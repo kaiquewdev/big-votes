@@ -68,25 +68,6 @@ class Votes( object ):
 		except Exception:
 			return output
 
-	def consult( self, info = {} ):
-		'''
-		Consult if has ip in voting.
-		'''
-		output = {}
-
-		try:
-			if self.db:
-				db = self.db
-
-				if info:
-					output = db(
-						( db.voting.vote_id == info['vote_id'] ) &
-						( db.voting.vote_ip == info['vote_ip'] )
-					).select().first()
-			return output
-		except Exception:
-			return output
-
 	def getScore( self, voting_id = 0 ):
 		'''
 		Get score of voting.
@@ -115,6 +96,41 @@ class Votes( object ):
 									'score': 1
 								}
 				return output
+			return output
+		except Exception:
+			return output
+
+	def updateStatus( self, info = {} ):
+		'''
+		Change status to a new.
+		'''
+		output = {}
+
+		try:
+			if self.db:
+				db = self.db
+
+				if info:
+					output = db( db.member.id == info['id'] ).update( status = info['status'] )
+			return output
+		except Exception:
+			return output
+
+	def consult( self, info = {} ):
+		'''
+		Consult if has ip in voting.
+		'''
+		output = {}
+
+		try:
+			if self.db:
+				db = self.db
+
+				if info:
+					output = db(
+						( db.voting.vote_id == info['vote_id'] ) &
+						( db.voting.vote_ip == info['vote_ip'] )
+					).select().first()
 			return output
 		except Exception:
 			return output

@@ -1,7 +1,7 @@
 {{extend 'layout.html'}}
 
 <section class="main-content">
-  {{ if votes and specs and len( votes.members ) == 2: }}
+  {{ if votes and specs and votes.members: }}
     <article class="voting">
       <header>
         <hr>
@@ -9,7 +9,11 @@
           {{=P(T('Voting closed'), _class="voting-message" )}}
         {{pass}}
         
-        <h2 class="vote-title"> {{=' X '.join( specs['title'] )}} </h2>
+        {{if len( specs['id'] ) >= 2: }}
+          <h2 class="vote-title"> {{=' X '.join( specs['title'] )}} </h2>
+        {{else:}}
+          <h2 class="vote-title"> {{=''.join( specs['title'] )}} </h2>
+        {{pass}}
 
         <div class="holder-members-imgs">
           {{=XML(''.join( specs['avatar'] ))}}
@@ -18,22 +22,12 @@
 
       <footer>
         <div class="holder-controls">
-          {{if now > specs['start'] and now > specs['end']:}}
-            {{if request.args and request.args[0] == 'result':}}
-              {{ for index in range( len( specs['id'] ) ): }}
-                <a class="button" href="#">
-                  {{=T('Eliminate %s' % ( specs['title'][index] ) )}}
-                </a>
-              {{pass}}
+          {{if len( specs['id'] ) >= 2: }}
+            {{ for index in range( len( specs['id'] ) ): }}
+              <a class="button" href="{{=URL('vote', 'index', args=[ votes['id'], specs['id'][index] ])}}">
+                {{=T('Eliminate %s' % ( specs['title'][index] ) )}}
+              </a>
             {{pass}}
-          {{pass}}
-
-          {{if now > specs['start'] and now < specs['end']:}}
-              {{ for index in range( len( specs['id'] ) ): }}
-                <a class="button" href="{{=URL('vote', 'index', args=[ votes['id'], specs['id'][index] ])}}">
-                  {{=T('Eliminate %s' % ( specs['title'][index] ) )}}
-                </a>
-              {{pass}}
           {{pass}}
         </div>
         <hr>

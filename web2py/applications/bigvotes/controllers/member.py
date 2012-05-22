@@ -22,7 +22,7 @@ def profile():
 	}
 
 def eliminated():
-	members = Members(db).getBy(status = 'deactive')
+	members = Members(db).getBy(status = 'eliminated')
 
 	return {
 		'members': members
