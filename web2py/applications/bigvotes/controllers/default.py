@@ -25,8 +25,10 @@ def index():
             'start': votes.start_at,
             'end': votes.end_at,
         }
-    if session.vote_message:
-        response.flash = session.vote_message
+    if request.args and session.vote_message:
+        if request.args[0] == 'result':
+            response.flash = session.vote_message
+            session.vote_message = ''
 
     return {
         'now': now,
