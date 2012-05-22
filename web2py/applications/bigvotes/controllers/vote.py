@@ -51,6 +51,7 @@ def index():
 					if output:
 						session.vote_message = T('Voted in %(name)s' % ( members['profile'].get( int( args[1] ) ) ) )
 			if now() > voting['start_at'] and now() > voting['end_at']:
+					# Line to update status of user < here >
 					session.vote_message = T('Voting complete, %(name)s was eliminated!' % ( members['eliminated'] ) )
 
 	return redirect( URL('default', 'index', args=['result']) )	
