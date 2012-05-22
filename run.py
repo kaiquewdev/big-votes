@@ -6,7 +6,7 @@ config = {
     'command': './web2py/web2py.py',
     'argument': '-a',
     'password': 'dev',
-    'domain': 'htpp://localhost',
+    'domain': 'http://localhost',
     'port': '8000',
 }
 
